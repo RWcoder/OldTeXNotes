@@ -153,11 +153,9 @@ public class TeXNotes extends Application {
      * @return A VBox of the Checkboxes for each option
      */
     private static VBox initOptions() {
-        TeXOption[] optionList = TeXMaker.getOptions();
-        CheckBox[] checkBoxes = new CheckBox[optionList.length];
+        VBox optionsBox = new VBox(new Label("Options:"));
 
-        for (int i = 0; i < optionList.length; i++) {
-            TeXOption option = optionList[i];
+        for (TeXOption option : TeXMaker.getOptions()) {
             CheckBox checkBox = new CheckBox(option.getName());
 
             checkBox.setOnAction(event -> {
@@ -168,10 +166,10 @@ public class TeXNotes extends Application {
                 }
             });
 
-            checkBoxes[i] = checkBox;
+            optionsBox.getChildren().add(checkBox);
         }
 
-        return new VBox(checkBoxes);
+        return optionsBox;
     }
 
     /**
